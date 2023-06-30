@@ -9,12 +9,16 @@
 <button @onclick="Lists" style="padding: 1%">Show List</button><br/><br/>
 
 <label for="inputOfCount"><b>Display Count:</b></label>
+
 <input id="inputOfCount" type="number" min="0" max="5" @bind="displayingCountValue" />
 
-@foreach (string journalismName in strings.Take(displayingCountValue))
+<ol>
+    @foreach (string journalismName in strings.Take(displayingCountValue))
 {
-    <p>@journalismName</p>
+    <li>@journalismName</li>
 }
+
+</ol>
 
 @code {
     private List<string> strings = new List<string>();
