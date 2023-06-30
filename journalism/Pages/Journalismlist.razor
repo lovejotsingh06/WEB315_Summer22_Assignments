@@ -7,22 +7,33 @@
 
 }
 
-<h1 id="a1">@heading</h1>
+<h1 id="a1"><em>@heading</em></h1>
 
-<button @onclick="Lists" style="padding: 1%">Show List</button>
+<button @onclick="Lists" style="padding: 1%">Show List</button><br/><br/>
 
-@foreach (string str in strings)
+<label for="inputOfCount"><b>Display Count:</b></label>
+
+<input id="inputOfCount" type="number"  min = "0" max ="5" @bind="displayCount" />
+
+
+@foreach (string journalismName in strings.Take(displayCount))
 {
-    <p>@str</p>
+    <p>@journalismName</p>
 }
 
 
 @code {
-    
+
     private List<string> strings = new List<string>();
+
+    private int displayCount = 0;
+
 
     private void Lists()
     {
         strings = new List<string> { "Reuters", "BBC News", "The Guardian", "The New York Times", "The Associated Press (AP)" };
     }
+
+    
 }
+
