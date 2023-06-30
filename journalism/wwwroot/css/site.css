@@ -52,3 +52,7 @@ a, .btn-link {
     #a1 {
         text-align: center;
     }
+
+    #a2 {
+        border: 1px solid black;
+    }

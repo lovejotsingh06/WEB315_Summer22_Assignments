@@ -1,1 +1,28 @@
 @page "/Journalismlist"
+
+
+@{
+
+    string heading = "List of Journalism";
+
+}
+
+<h1 id="a1">@heading</h1>
+
+<button @onclick="Lists" style="padding: 1%">Show List</button>
+
+@foreach (string str in strings)
+{
+    <p>@str</p>
+}
+
+
+@code {
+    
+    private List<string> strings = new List<string>();
+
+    private void Lists()
+    {
+        strings = new List<string> { "Reuters", "BBC News", "The Guardian", "The New York Times", "The Associated Press (AP)" };
+    }
+}
