@@ -1,10 +1,7 @@
 @page "/Journalismlist"
 
-
 @{
-
     string heading = "List of Journalism";
-
 }
 
 <h1 id="a1"><em>@heading</em></h1>
@@ -12,28 +9,27 @@
 <button @onclick="Lists" style="padding: 1%">Show List</button><br/><br/>
 
 <label for="inputOfCount"><b>Display Count:</b></label>
+<input id="inputOfCount" type="number" min="0" max="5" @bind="displayingCountValue" />
 
-<input id="inputOfCount" type="number"  min = "0" max ="5" @bind="displayCount" />
-
-
-@foreach (string journalismName in strings.Take(displayCount))
+@foreach (string journalismName in strings.Take(displayingCountValue))
 {
     <p>@journalismName</p>
 }
 
-
 @code {
-
     private List<string> strings = new List<string>();
+    private int displayingCountValue = 5;
 
-    private int displayCount = 0;
-
-
+    // This method is triggered when the "Show List" button is clicked
     private void Lists()
     {
-        strings = new List<string> { "Reuters", "BBC News", "The Guardian", "The New York Times", "The Associated Press (AP)" };
+        List<string> journalismList = new List<string> { "Reuters", "BBC News", "The Guardian", "The New York Times", "The Associated Press (AP)", "Aaj Tak" };
+
+        // Checking if the displayingCountValue is within the valid range (0 to 5)
+        if (displayingCountValue >= 0 && displayingCountValue <= 5)
+        {
+            // Update the strings list with the selected number of journalism names
+            strings = journalismList.Take(displayingCountValue).ToList();
+        }
     }
-
-    
 }
-
