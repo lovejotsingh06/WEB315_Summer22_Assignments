@@ -1,7 +1,18 @@
 ﻿@page "/"
+@using System
 
-<h1>Hello, world!</h1>
+@{
+    string nameOfTheme = "Journalism";
+    string myName = "Lovejot Singh";
+    DateTime time = DateTime.Now;
+}
 
-Welcome to your new app.
+<h1 id="a1">@nameOfTheme</h1>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<p id="a1">@myName</p>
+
+<p id="a1">@time.ToString()</p>
+
+
+
+
