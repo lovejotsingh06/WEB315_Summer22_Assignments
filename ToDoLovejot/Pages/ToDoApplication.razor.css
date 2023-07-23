@@ -1,0 +1,9 @@
+div {
+    margin: 10px 0px;
+}
+
+ul > li {
+    color: red;
+    background-color: black;
+    padding: 5px;
+}

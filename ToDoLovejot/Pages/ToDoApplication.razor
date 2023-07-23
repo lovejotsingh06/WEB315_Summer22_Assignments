@@ -1,0 +1,62 @@
+@page "/todoapplication"
+<link rel="stylesheet" href="ToDoApplication.razor.css">
+<h3>To Do App(@todos.Count(todo => !todo.ItemsCompleted))</h3>
+
+<div class="text-align">
+    <label>Show List:</label>
+    <select @bind="filterOption">
+        <option value="All">All</option>
+        <option value="Completed">Tasks Finish</option>
+        <option value="Incomplete">Incomplete To Do's</option>
+    </select>
+</div>
+
+<ul>
+    @foreach (var todo in GetFilteredTodos())
+    {
+        <li>
+            <input type="checkbox" @bind="todo.ItemsCompleted" />
+            <input @bind="todo.ListItems" />
+            <button @onclick="() => DeleteTodo(todo)">Delete</button>
+        </li>
+    }
+</ul>
+
+<input placeholder="Add Task" @bind="newTodo" />
+<button @onclick="AddTodo">New Task</button>
+
+@code {
+    private List<ToDoListItems> todos = new();
+    private string newTodo;
+    private string filterOption = "All";
+
+    private void AddTodo()
+    {
+        if (!string.IsNullOrWhiteSpace(newTodo))
+        {
+            todos.Add(new ToDoListItems { ListItems = newTodo });
+            newTodo = string.Empty;
+        }
+    }
+
+    private void DeleteTodo(ToDoListItems todoToDelete)
+    {
+        todos.Remove(todoToDelete);
+    }
+
+    private IEnumerable<ToDoListItems> GetFilteredTodos()
+    {
+        if (filterOption == "Completed")
+        {
+            return todos.Where(todo => todo.ItemsCompleted);
+        }
+        else if (filterOption == "Incomplete")
+        {
+            return todos.Where(todo => !todo.ItemsCompleted);
+        }
+        else
+        {
+            return todos;
+        }
+    }
+}
